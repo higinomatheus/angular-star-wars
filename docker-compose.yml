@@ -1,0 +1,23 @@
+services:
+  angular-app:
+    # Constrói a imagem usando o Dockerfile na raiz do projeto,
+    # mas utiliza apenas o estágio 'build' que preparamos (ambiente Node.js).
+    build:
+      context: .
+      target: build
+
+    ports:
+      # Mapeia a porta 4200 do contêiner para a porta 4200 da sua máquina.
+      - "4200:4200"
+
+    volumes:
+      # Monta o código-fonte local na pasta /app do contêiner para hot-reloading.
+      # A segunda linha evita que a pasta node_modules local sobrescreva a do contêiner.
+      - .:/app
+      - /app/node_modules
+
+    # Comando para iniciar o servidor de desenvolvimento do Angular.
+    # O --host 0.0.0.0 é crucial para que o servidor seja acessível de fora do contêiner.
+    # O --poll 1000 ajuda na detecção de mudanças de arquivos em alguns sistemas.
+    # Usamos 'npm run start' para garantir que o ambiente e o PATH sejam configurados corretamente pelo npm.
+    command: npm run start -- --host 0.0.0.0 --poll 1000

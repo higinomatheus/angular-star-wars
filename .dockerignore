@@ -1,0 +1,19 @@
+# Git
+.git
+.gitignore
+
+# Node
+node_modules
+npm-debug.log
+
+# Angular build output and cache
+dist
+.angular/
+
+# IDE/Editor specific
+.vscode/
+.idea/
+
+# Docker files
+.dockerignore
+Dockerfile
