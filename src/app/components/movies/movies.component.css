@@ -1,0 +1,16 @@
+.table-container {
+	padding: 1rem;
+	max-width: 100%;
+	overflow-x: auto;
+}
+
+.filter {
+	width: 100%;
+	max-width: 400px;
+	margin-bottom: 1rem;
+}
+
+table {
+	width: 100%;
+	min-width: 800px; /* evita quebrar colunas se tiver muito conteúdo */
+}
