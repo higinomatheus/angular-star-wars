@@ -15,5 +15,10 @@ export const routes: Routes = [
 	{
 		path: 'starships',
 		component: StarshipComponent
+	},
+	{
+		path: '',
+		redirectTo: 'movies',
+		pathMatch: 'full',
 	}
 ];

@@ -8,6 +8,7 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
+import { SwapiService } from '../../services/swapi.service';
 
 @Component({
 	selector: 'app-movies',
@@ -36,11 +37,12 @@ export class MoviesComponent implements AfterViewInit {
 	@ViewChild(MatPaginator) paginator!: MatPaginator;
 	@ViewChild(MatSort) sort!: MatSort;
 
-	constructor() {}
+	constructor(private swapiService: SwapiService) {}
 
 	ngAfterViewInit(): void {
 		this.dataSource.paginator = this.paginator;
 		this.dataSource.sort = this.sort;
+		this.getFilms();
 	}
 
 	applyFilter(event: Event) {
@@ -48,5 +50,9 @@ export class MoviesComponent implements AfterViewInit {
 		this.dataSource.filter = value.trim().toLowerCase();
 	}
 
-	getMovies() {}
+	getFilms() {
+		this.swapiService.getFilms().subscribe((res) => {
+			console.log(res);
+		})
+	}
 }
